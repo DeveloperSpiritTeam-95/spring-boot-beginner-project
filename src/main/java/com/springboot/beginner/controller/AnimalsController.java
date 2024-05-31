@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/animals")
@@ -24,4 +25,19 @@ public class AnimalsController {
         return this.service.getAllAnimals();
     }
 
+
+    @GetMapping(value = "/getAnimal/{id}")
+    public Optional<Animals> getAnimal(@PathVariable Long id){
+        return this.service.getAnimal(id);
+    }
+
+    @PutMapping(value = "/updateAnimal/{id}")
+    public String updateAnimal(@PathVariable Long id,@RequestBody Animals animals){
+        return this.service.updateAnimal(id,animals);
+    }
+
+    @DeleteMapping(value = "/deleteAnimal/{id}")
+    public String deleteAnimal(@PathVariable Long id){
+        return this.service.deleteAnimal(id);
+    }
 }
